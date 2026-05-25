@@ -1,0 +1,4 @@
+vettore,costo_fisso_spedizione,penale_ritardo_ora
+DHL,15.50,5.00
+BRT,12.00,3.50
+UPS,18.00,6.00
