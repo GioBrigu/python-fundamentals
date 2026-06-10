@@ -1,0 +1,7 @@
+id_transazione,data_evento,vettore,tempo_elaborazione_ore,stato_consegna,costo_fisso_spedizione,penale_ritardo_ora
+TX-9001,2026-05-20,DHL,4.5,Consegnato,15.5,5.0
+TX-9002,2026-05-20,BRT,12.2,In Corso,12.0,3.5
+TX-9003,,UPS,12.2,Consegnato,18.0,6.0
+TX-9004,2026-05-21,DHL,24.8,Annullato,15.5,5.0
+TX-9005,2026-05-22,NON SPECIFICATO,8.0,Consegnato,,
+TX-9006,2026-05-23,BRT,14.1,Consegnato,12.0,3.5

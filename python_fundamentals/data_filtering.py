@@ -1,5 +1,5 @@
 # ==============================================================================
-# PROGETTO: Filtraggio Avanzato con .loc e .iloc
+# OPERAZIONE: Filtraggio Avanzato con .loc e .iloc
 # OBIETTIVO: Isolare record e colonne specifiche per i report direzionali
 # ==============================================================================
 

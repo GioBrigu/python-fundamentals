@@ -1,5 +1,5 @@
 # ==============================================================================
-# PROGETTO: Data Cleaning e Standardizzazione con Pandas
+# OPERAZIONE: Data Cleaning e Standardizzazione con Pandas
 # OBIETTIVO: Bonificare i valori nulli e normalizzare i formati temporali
 # ==============================================================================
 

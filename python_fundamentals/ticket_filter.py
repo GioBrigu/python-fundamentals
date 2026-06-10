@@ -1,5 +1,5 @@
 # ==============================================================================
-# PROGETTO: Monitoraggio e Filtraggio Ticket in Service Delivery
+# OPERAZIONE: Monitoraggio e Filtraggio Ticket in Service Delivery
 # OBIETTIVO: Isolare i ticket critici fuori SLA con gestione degli errori
 # ==============================================================================
 
