@@ -7,6 +7,11 @@
 -- Dice al file SQL su quale database fisco deve lavorare
 ATTACH 'azienda_analytics.db' AS db;
 
+SHOW DATABASES;
+
+SELECT *
+FROM db.servizi_logistici;
+
 --------------------------------------------------------------------------------
 -- QUERY 1: Selezione mirata di colonne (Evitiamo SELECT *)
 --------------------------------------------------------------------------------
@@ -56,3 +61,16 @@ SELECT
 FROM db.servizi_logistici
 GROUP BY vettore
 HAVING costo_medio_vettore > 15.00;
+
+--------------------------------------------------------------------------------
+-- OPERAZIONE: Sotto-query (Subqueries) Avanzate
+-- OBIETTIVO: Isolare i record usando metriche calcolate dinamicamente
+--------------------------------------------------------------------------------
+
+SELECT id_transazione, vettore, costo_spedizione, stato
+FROM db.servizi_logistici
+WHERE costo_spedizione > (
+    SELECT AVG(costo_spedizione) 
+    FROM db.servizi_logistici
+)
+ORDER BY costo_spedizione DESC;
