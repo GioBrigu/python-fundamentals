@@ -80,3 +80,36 @@ SELECT
     ticket_rank_by_agent
 FROM ranked_tickets
 ORDER BY agent_id, ticket_rank_by_agent;
+
+
+-- =====================================================================
+-- PASSO 3: ANALISI DEI DELTA TEMPORALI CON FUNZIONI FINESTRA (LAG)
+-- =====================================================================
+-- Questa query calcola la differenza in minuti tra il ticket corrente 
+-- e quello precedente per lo stesso agente, ordinati per ID (sequenza temporale).
+
+WITH time_deltas AS (
+    SELECT 
+        ticket_id,
+        agent_id,
+        category,
+        resolution_time_minutes,
+        -- Recuperiamo il tempo del ticket PRECEDENTE dello stesso agente
+        LAG(resolution_time_minutes, 1) OVER (
+            PARTITION BY agent_id 
+            ORDER BY ticket_id ASC
+        ) AS previous_ticket_time
+    FROM operations_tickets
+    WHERE resolution_time_minutes IS NOT NULL 
+      AND resolution_time_minutes > 0
+)
+SELECT 
+    ticket_id,
+    agent_id,
+    category,
+    resolution_time_minutes,
+    previous_ticket_time,
+    -- Calcolo del Delta: Tempo Corrente - Tempo Precedente
+    (resolution_time_minutes - previous_ticket_time) AS delta_minutes_vs_previous
+FROM time_deltas
+ORDER BY agent_id, ticket_id;
