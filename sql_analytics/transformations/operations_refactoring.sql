@@ -113,3 +113,26 @@ SELECT
     (resolution_time_minutes - previous_ticket_time) AS delta_minutes_vs_previous
 FROM time_deltas
 ORDER BY agent_id, ticket_id;
+
+
+-- =====================================================================
+-- PASSO 4: CALCOLO DEI TOTALI PROGRESSIVI (RUNNING TOTALS)
+-- =====================================================================
+-- Questa query calcola la somma cumulata dei minuti di risoluzione 
+-- per ciascun agente man mano che i ticket vengono processati.
+
+SELECT 
+    ticket_id,
+    agent_id,
+    category,
+    resolution_time_minutes,
+    priority,
+    -- Somma progressiva: aggrega i minuti ordinando cronologicamente per ticket_id
+    SUM(resolution_time_minutes) OVER (
+        PARTITION BY agent_id 
+        ORDER BY ticket_id ASC
+    ) AS cumulative_work_minutes
+FROM operations_tickets
+WHERE resolution_time_minutes IS NOT NULL 
+  AND resolution_time_minutes > 0
+ORDER BY agent_id, ticket_id;
